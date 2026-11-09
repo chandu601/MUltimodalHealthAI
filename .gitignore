@@ -1,0 +1,23 @@
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+
+# Medical datasets
+data/retinal/
+data/skin/
+data/splits/
+
+# Trained models
+checkpoints/
+*.pth
+*.pt
+
+# Notebook files
+.ipynb_checkpoints/
+
+# Environment secrets
+.env
+
+# Editor and OS files
+.DS_Store
