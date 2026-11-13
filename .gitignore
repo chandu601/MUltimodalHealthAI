@@ -1,23 +1,61 @@
+
 # Python environment
 .venv/
+venv/
 __pycache__/
 *.pyc
+.pytest_cache/
 
-# Medical datasets
+# Original datasets
 data/retinal/
 data/skin/
 data/splits/
 
-# Trained models
-checkpoints/
+# Ignore processed data except required preprocessors
+data/processed/*
+!data/processed/skin/
+!data/processed/retinal/
+data/processed/skin/*
+data/processed/retinal/*
+!data/processed/skin/clinical_preprocessor.joblib
+!data/processed/retinal/clinical_preprocessor.joblib
+
+# Ignore all checkpoints except required runtime models
+checkpoints/*
+!checkpoints/skin_multimodal_best.pth
+!checkpoints/skin_efficientnet_baseline.pth
+!checkpoints/retinal_multimodal_best.pth
+!checkpoints/retinal_efficientnet_best.pth
+!checkpoints/image_type_best.pth
+
+# Ignore other large model files
 *.pth
 *.pt
 
-# Notebook files
-.ipynb_checkpoints/
-
-# Environment secrets
+# Local secrets
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
 
-# Editor and OS files
+# Backups and logs
+*.backup
+*.log
+*_diagnostic.txt
+*_error_details.txt
+
+# Python/editor files
+.vscode/
+.idea/
 .DS_Store
+
+# Project archives
+*.zip
+
+!checkpoints/skin_multimodal_best.pth
+!checkpoints/skin_efficientnet_baseline.pth
+!checkpoints/retinal_multimodal_best.pth
+!checkpoints/retinal_efficientnet_best.pth
+!checkpoints/image_type_best.pth
