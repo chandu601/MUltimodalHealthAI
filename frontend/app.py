@@ -276,6 +276,7 @@ else:
     st.info(t("skin_instructions"))
 
 
+
 # ==================================================
 # 2. MEDICAL IMAGE INPUT
 # ==================================================
@@ -283,40 +284,22 @@ else:
 st.divider()
 st.subheader("2. " + t("provide_image"))
 
-if current_type == "skin":
-    image_source = st.radio(
-        t("image_source"),
-        options=[
-            "Upload from Device",
-            "Capture using Camera",
-        ],
-        format_func=lambda value: (
-            t("upload_from_device")
-            if value == "Upload from Device"
-            else t("capture_using_camera")
-        ),
-        horizontal=True,
-        key="skin_image_source",
-    )
-else:
-    image_source = "Upload from Device"
+# Retinal screening instructions
+if current_type == "retinal":
     st.caption(t("retinal_image_caption"))
 
+# Upload an image from the device
+# Camera functionality has been removed
+uploaded_file = st.file_uploader(
+    t("upload_jpg_png"),
+    type=["jpg", "jpeg", "png"],
+    key=f"upload_{current_type}",
+)
 
-if image_source == "Upload from Device":
-    uploaded_file = st.file_uploader(
-        t("upload_jpg_png"),
-        type=["jpg", "jpeg", "png"],
-        key=f"upload_{current_type}",
-    )
-else:
-    uploaded_file = st.camera_input(
-        t("capture_skin_image"),
-        key="skin_camera",
-    )
-
+# Display the uploaded image
 if uploaded_file is not None:
     st.success(t("image_selected"))
+
     st.image(
         uploaded_file,
         caption=t("selected_image"),
@@ -327,6 +310,7 @@ if uploaded_file is not None:
 # ==================================================
 # 3. CLINICAL INFORMATION
 # ==================================================
+
 
 st.divider()
 st.subheader("3. " + t("patient_information"))
